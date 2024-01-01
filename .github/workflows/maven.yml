@@ -1,10 +1,9 @@
-import requests
 import shopify
 
 # Set up your Shopify credentials
-SHOPIFY_API_KEY = 'your_api_key'
-SHOPIFY_PASSWORD = 'your_api_password'
-SHOP_NAME = 'your_shop_name.myshopify.com'
+SHOPIFY_API_KEY = '666dc4b7-9f2b-4830-8bba-6cebf9335e0a'
+SHOPIFY_PASSWORD = '9854083man$Z'
+SHOP_NAME = 'corgiscards.com'
 
 # Authenticate with Shopify
 shopify.Session.setup(api_key=SHOPIFY_API_KEY, secret=SHOPIFY_PASSWORD)
