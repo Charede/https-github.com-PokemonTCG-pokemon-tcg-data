@@ -1,0 +1,28 @@
+import requests
+import shopify
+
+# Set up your Shopify credentials
+SHOPIFY_API_KEY = 'your_api_key'
+SHOPIFY_PASSWORD = 'your_api_password'
+SHOP_NAME = 'your_shop_name.myshopify.com'
+
+# Authenticate with Shopify
+shopify.Session.setup(api_key=SHOPIFY_API_KEY, secret=SHOPIFY_PASSWORD)
+shop = shopify.Session(SHOP_NAME)
+
+# Fetch Pokemon card data from Pokemon TCG API
+pokemon_api_url = 'https://api.pokemontcg.io/v2/cards'
+response = requests.get(pokemon_api_url)
+pokemon_data = response.json()
+
+# Upload images and create products in Shopify
+for card in pokemon_data['data']:
+    product = shopify.Product()
+    product.title = card['name']
+    product.save()
+
+    for image_url in card['images']:
+        image = shopify.Image()
+        image.src = image_url
+        image.product_id = product.id
+        image.save()
